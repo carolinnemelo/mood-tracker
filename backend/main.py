@@ -27,7 +27,7 @@ def read_root():
 @app.post("/moods")
 def add_mood(entry: MoodEntry):
     print("New mood entry received: ", entry)
-    db.add_mood(entry)
+    db.add_mood(entry.model_dump())
     return { "status": "ok", "emoji": entry.emoji, "note": entry.note}
 
     
