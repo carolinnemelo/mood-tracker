@@ -53,16 +53,15 @@ export class CalendarComponent {
   handleDateClick(info: DateClickArg) {
     this.clickedDate = info.dateStr;
     this.isModalOpen.set(true);
+  }
+  
+  handleEmojiClick(emoji: Emoji) {
     const events = this.calendarOptions.events as EventInput[];
     events.push({
-      title: '😄',
+      title: emoji.value,
       date: this.clickedDate,
     });
-
     this.calendarOptions = { ...this.calendarOptions, events: [...events] };
-  }
-
-  handleEmojiClick(emoji: Emoji) {
-    console.log(emoji);
+    this.isModalOpen.set(false);
   }
 }
