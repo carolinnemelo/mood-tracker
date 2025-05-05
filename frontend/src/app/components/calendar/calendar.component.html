@@ -1,10 +1,8 @@
-<div #calendarContainer class="relative">
-  <full-calendar [options]="calendarOptions" ></full-calendar>
 
-@if  (clickedDayElement) {
-  <div class="absolute w-24 bg-red-500" [ngStyle]="menuStyle">
+<full-calendar [options]="calendarOptions" ></full-calendar>
+
+@if  (clickedDate) {
+  <div class="bg-red-500">
     emoji list
   </div>
 }
-
-</div>
