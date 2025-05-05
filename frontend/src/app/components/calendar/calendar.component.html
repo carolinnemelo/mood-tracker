@@ -1,8 +1,13 @@
 
 <full-calendar [options]="calendarOptions" ></full-calendar>
 
-@if  (clickedDate) {
-  <div class="bg-red-500">
-    emoji list
+@if  (isModalOpen()) {
+  <div class="flex items-center justify-center z-10 bg-zinc-900/50 inset-0 fixed">
+    <div class="bg-white rounded-lg shadow-lg p-4 w-full mx-4 text-center md:mx-auto md:w-1/2">
+      <h2 class="text-xl font-bold mb-4">How are you feeling today?</h2>
+      @for (emoji of emojis; track emoji.id) {
+        <button (click)="handleEmojiClick(emoji)">{{emoji.value}}</button>
+      }
+    </div>
   </div>
 }

@@ -1,9 +1,10 @@
 import { NgStyle } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions, EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
+import { Emoji } from '../../types/emoji.type';
 
 @Component({
   selector: 'app-calendar',
@@ -20,10 +21,38 @@ export class CalendarComponent {
   };
 
   clickedDate = '';
-  isMenuOpen = false;
+  isModalOpen = signal(false);
+  emojis = [
+    {
+      id: 5,
+      label: 'happy',
+      value: '😄',
+    },
+    {
+      id: 4,
+      label: 'neutral',
+      value: '😐',
+    },
+    {
+      id: 3,
+      label: 'anxious',
+      value: '😰',
+    },
+    {
+      id: 2,
+      label: 'angry',
+      value: '😡',
+    },
+    {
+      id: 1,
+      label: 'sad',
+      value: '😢',
+    },
+  ];
 
   handleDateClick(info: DateClickArg) {
     this.clickedDate = info.dateStr;
+    this.isModalOpen.set(true);
     const events = this.calendarOptions.events as EventInput[];
     events.push({
       title: '😄',
@@ -33,5 +62,7 @@ export class CalendarComponent {
     this.calendarOptions = { ...this.calendarOptions, events: [...events] };
   }
 
-
+  handleEmojiClick(emoji: Emoji) {
+    console.log(emoji);
+  }
 }
